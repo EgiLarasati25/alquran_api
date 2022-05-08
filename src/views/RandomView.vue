@@ -11,29 +11,38 @@ export default {
       audio: null,
     };
   },
-  methods:{
-    async getRandomAyat(){
+  methods: {
+    async getRandomAyat() {
       const random = Math.floor(Math.random() * 100);
-      this.fetchQuran("verses/random?language=id&words=false&translations=id&audio=3&fields="+random)
-        .then(res => {
-          const verse = res.verse;
-          this.verse = verse;
-          this.audio = this.getAudioPath(verse.audio.url);
-          /**
-           * Get verse key
-           */
-          const verseKey = verse.verse_key;
-          this.getQuran(verseKey);
-          /**
-           * Get chapter number
-           */
-          const chapterNumber = verseKey.split(':')[0];
-          this.getChapter(chapterNumber);
-          /**
-           * Get translate
-           */
-          this.getTranslate(verseKey);
-        })
+      this.fetchQuran(
+        "verses/random?language=id&words=false&translations=id&audio=3&fields=" +
+          random
+      ).then((res) => {
+        const verse = res.verse;
+        this.verse = verse;
+        this.audio = this.getAudioPath(verse.audio.url);
+        /**
+         * Get verse key
+         */
+        const verseKey = verse.verse_key;
+        this.getQuran(verseKey);
+        /**
+         * Get chapter number
+         */
+        const chapterNumber = verseKey.split(":")[0];
+        this.getChapter(chapterNumber);
+        /**
+         * Get translate
+         */
+        this.getTranslate(verseKey);
+      });
+    },
+    async getQuran(verseKey) {
+      this.fetchQuran("quran/verses/uthmani?verse_key=" + verseKey).then(
+        (res) => {
+          this.quran = res.verses[0];
+        }
+      );
     },
     getAudioPath(path) {
       return "https://verses.quran.com/" + path;
@@ -88,7 +97,7 @@ export default {
 
 <template>
   <section class="hero is-small">
-    <div class="hero-body">
+    <div class="i hero-body">
       <p class="title">Random Ayat</p>
       <p class="subtitle">Random Ayat from https://api.quran.com/</p>
     </div>
@@ -114,3 +123,11 @@ export default {
     </div>
   </section>
 </template>
+<style>
+.i {
+  font-family: Joyce;
+  padding: 80px;
+  text-align: center;
+  font-size: 20px;
+}
+</style>

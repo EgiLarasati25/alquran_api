@@ -12,7 +12,12 @@ export default {
       infosurah: ref([]),
     };
   },
-
+  watch: {
+    $route() {
+      this.getSurah();
+      this.getInfoSurah();
+    },
+  },
   mounted() {
     this.getSurah();
     this.getInfoSurah();

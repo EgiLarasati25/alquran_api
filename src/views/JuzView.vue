@@ -11,7 +11,12 @@ export default {
       isijuz: ref([]),
     };
   },
-
+  watch: {
+    $route() {
+      this.getJuz();
+      this.getIsiJuz();
+    },
+  },
   mounted() {
     this.getJuz();
     this.getIsiJuz();
@@ -50,7 +55,10 @@ export default {
 </script>
 
 <template>
-  <div class="text-center mt-5">
+  <div class="text-center mt-3">
+    <div>
+      <img src="../assets/lgo.png" alt="lg1o" width="300">
+    </div>
     <h2>Juz {{ $route.params.id }}</h2>
     <h4 v-for="quran in isijuz" :key="quran.id" class="text-lg-end mt-5">
       {{ quran.text_uthmani }} {{ quran.verse_key }}
