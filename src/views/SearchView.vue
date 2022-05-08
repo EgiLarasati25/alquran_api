@@ -5,11 +5,11 @@ import axios from "axios";
 export default {
   data() {
     return {
-      cari: "1",
+      cari: "",
       surah: ref([]),
       judul: ref([]),
       arti: ref([]),
-      suara:"",
+      suara: "",
       name: [],
     };
   },
@@ -106,15 +106,14 @@ export default {
       <audio v-bind:src="suara.audio_url" controls></audio>
     </p>
   </div>
-  <div v-for="(ayat,index) in surah" :key="index" class="card">
+  <div v-for="(ayat, index) in surah" :key="index" class="card">
     <div class="card-body">
-      <h5 class="card-title text-lg-end">{{ ayat.text_uthmani}}{{ayat.verse_key}}</h5>
+      <h5 class="card-title text-lg-end">
+        {{ ayat.text_uthmani }}{{ ayat.verse_key }}
+      </h5>
       <p class="card-title text-end" v-html="arti[index].text"></p>
     </div>
   </div>
 </template>
 
-<style scoped>
-
-
-</style>
+<style scoped></style>
