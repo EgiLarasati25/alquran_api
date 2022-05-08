@@ -11,7 +11,12 @@ export default {
       isijuz: ref([]),
     };
   },
-
+  watch:{
+    $route(){
+      this.getJuz();
+      this.getIsiJuz();
+    }
+  },
   mounted() {
     this.getJuz();
     this.getIsiJuz();

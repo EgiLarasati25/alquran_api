@@ -35,6 +35,12 @@ export default {
           this.getTranslate(verseKey);
         })
     },
+    async getQuran(verseKey){
+      this.fetchQuran('quran/verses/uthmani?verse_key='+verseKey)
+        .then(res => {
+          this.quran = res.verses[0]
+        })
+    },
     getAudioPath(path) {
       return "https://verses.quran.com/" + path;
     },

@@ -51,7 +51,7 @@ export default {
         )
         .then((response) => {
           this.judul = response.data.chapter;
-          this.name = this.judul.translated_name;
+          this.name = this.judul?.translated_name;
         })
         .catch((error) => {
           console.log(error);
@@ -95,23 +95,27 @@ export default {
       placeholder="Search"
       aria-label="Search"
     />
-    <div class="mt-5">
-      <h1>{{ judul.name_complex }}</h1>
-      <br />
-      <h1>{{ name.name }}</h1>
-      <br />
-      <h2>Diturunkan di {{ judul.revelation_place }}</h2>
-    </div>
-    <p v-if="suara" class="text-lg-center mt-3">
-      <audio v-bind:src="suara.audio_url" controls></audio>
-    </p>
+   <div v-if="cari">
+     <div class="mt-5">
+       <h1>{{ judul?.name_complex }}</h1>
+       <br />
+       <h1>{{ name?.name }}</h1>
+       <br />
+       <h2>Diturunkan di {{ judul?.revelation_place }}</h2>
+     </div>
+     <p v-if="suara" class="text-lg-center mt-3">
+       <audio v-bind:src="suara?.audio_url" controls></audio>
+     </p>
+   </div>
   </div>
-  <div v-for="(ayat, index) in surah" :key="index" class="card">
+  <div v-if="cari" v-for="(ayat, index) in surah" :key="index" class="card">
     <div class="card-body">
       <h5 class="card-title text-lg-end">
-        {{ ayat.text_uthmani }}{{ ayat.verse_key }}
+        {{ ayat?.text_uthmani }}{{ ayat?.verse_key }}
       </h5>
-      <p class="card-title text-end" v-html="arti[index].text"></p>
+<!--      <p class="card-title text-end" v-html="arti[index].text"></p>-->
+      <p class="card-title text-end">{{arti[index]?.text}}</p>
+
     </div>
   </div>
 </template>
