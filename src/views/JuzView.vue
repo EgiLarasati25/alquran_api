@@ -55,9 +55,9 @@ export default {
 </script>
 
 <template>
-  <div class="text-center mt-3">
+  <div class="text-center mt-5">
     <div>
-      <img src="../assets/lgo.png" alt="lg1o" width="300">
+    <img src="../assets/lgo.png" alt="lgo" width="250"  />
     </div>
     <h2>Juz {{ $route.params.id }}</h2>
     <h4 v-for="quran in isijuz" :key="quran.id" class="text-lg-end mt-5">
